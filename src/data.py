@@ -39,16 +39,3 @@ class BatchIterator(DataIterator):
                 positives[i] = self.augment_f(inputs[index_anchor].copy())
                 negatives[i] = self.preproc_f(inputs[index_neg].copy())
             yield [anchors, positives, negatives]
-
-if __name__ == '__main__':
-    from icecream import ic
-    iterator = BatchIterator(
-        batch_size=4,
-        augment_f=lambda x: x*10,
-        max_images=2,
-    )
-    data = torch.full((8, 3, 64, 64), fill_value=255)
-    ic(data[0,:,0,0])
-    for batch in iterator(data):
-        ic(batch[0].shape)
-        ic(batch[0][0,:,0,0])

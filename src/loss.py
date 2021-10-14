@@ -21,12 +21,3 @@ def triplet_loss(y_pred: torch.Tensor, alpha: float=0.5) -> torch.Tensor:
     final_loss = torch.mean(loss)
 
     return final_loss
-
-if __name__ == '__main__':
-    from icecream import ic
-    anchor = torch.randn(2, 4)
-    positive = torch.randn(2, 4)
-    negative = torch.randn(2, 4)
-    y_predicted = torch.cat([anchor, positive, negative], dim=1)
-    loss = triplet_loss(y_predicted)
-    ic(type(loss))
